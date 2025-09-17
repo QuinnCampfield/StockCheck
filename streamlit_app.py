@@ -3,6 +3,7 @@ import requests
 import os
 
 # Get API URL from environment variable (for Docker) or use localhost
+# For single deployment, API runs on the same domain but different port
 API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
 
 st.title("Financial Data Assistant")

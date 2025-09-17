@@ -10,18 +10,32 @@ This guide will help you deploy your Financial Data Assistant to Railway so othe
 
 ## 🚀 Deployment Steps
 
-### Step 1: Deploy the API
+### Option 1: Single Deployment (Recommended - Simpler & Cheaper)
 
+1. Go to [Railway](https://railway.app) and sign in
+2. Click "New Project" → "Deploy from GitHub repo"
+3. Select your repository
+4. In deployment settings, change Dockerfile to `Dockerfile.single`
+5. Add environment variables:
+   ```
+   OPENAI_API_KEY=your_actual_openai_api_key_here
+   DB_FILE=market_data.csv
+   ```
+6. Deploy!
+
+**Result**: One URL that serves both API and Streamlit frontend
+
+### Option 2: Two Separate Deployments (More Complex)
+
+#### Step 1: Deploy the API
 1. Go to [Railway](https://railway.app) and sign in
 2. Click "New Project" → "Deploy from GitHub repo"
 3. Select your repository
 4. Choose "Deploy Now"
 5. Railway will automatically detect the `Dockerfile` and deploy your API
 
-### Step 2: Set Environment Variables
-
+#### Step 2: Set Environment Variables
 In your Railway project dashboard:
-
 1. Go to "Variables" tab
 2. Add these environment variables:
    ```
@@ -29,14 +43,11 @@ In your Railway project dashboard:
    DB_FILE=market_data.csv
    ```
 
-### Step 3: Get Your API URL
-
+#### Step 3: Get Your API URL
 1. In Railway dashboard, go to "Settings" → "Domains"
 2. Copy your API URL (something like `https://your-app-name.railway.app`)
-3. This is your API URL for the next step
 
-### Step 4: Deploy the Frontend
-
+#### Step 4: Deploy the Frontend
 1. Create a new Railway project
 2. Connect the same GitHub repository
 3. In the deployment settings, change the Dockerfile to `Dockerfile.streamlit-prod`
@@ -45,12 +56,6 @@ In your Railway project dashboard:
    API_URL=https://your-api-url.railway.app
    ```
 5. Deploy
-
-### Step 5: Get Your Frontend URL
-
-1. In the frontend project dashboard, go to "Settings" → "Domains"
-2. Copy your frontend URL
-3. This is the URL people will visit to use your app!
 
 ## 🔗 Final Result
 

@@ -26,5 +26,5 @@ USER app
 # Expose port (Railway will set PORT environment variable)
 EXPOSE 8000
 
-# Run both services using a process manager
+# Run both services - API on Railway's port, Streamlit on 8501
 CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port $PORT & streamlit run streamlit_app.py --server.port 8501 --server.address 0.0.0.0 & wait"]
