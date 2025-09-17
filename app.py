@@ -5,6 +5,14 @@ from llm_utils import answer_question
 
 app = FastAPI()
 
+@app.get("/")
+def root():
+    return {"message": "Financial Data Assistant API", "status": "healthy"}
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
 @app.post("/ingest")
 def ingest(tickers: list[str] = Query(None, description="List of tickers to ingest (optional)")):
     run_ingest(tickers)

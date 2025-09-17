@@ -1,4 +1,4 @@
-# Production Dockerfile for Railway deployment (API only)
+# Single deployment Dockerfile - runs both API and Streamlit
 FROM python:3.11-slim
 
 # Set working directory
@@ -26,5 +26,5 @@ USER app
 # Expose port (Railway will set PORT environment variable)
 EXPOSE 8000
 
-# Run the API
-CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port $PORT"]
+# Run both services using a process manager
+CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port $PORT & streamlit run streamlit_app.py --server.port 8501 --server.address 0.0.0.0 & wait"]
